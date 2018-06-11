@@ -11,114 +11,72 @@
 
 與大家共勉之。
 
-[![](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_340x96.png)](https://chrome.google.com/webstore/detail/paphcfdffjnbcgkokihcdjliihicmbpd)
+微信小程序 wxs 版
 
-## Installation
+pangu.wxs
+```
+var cjkQuote = getRegExp('([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])(["])', "g");
+var quoteCJK = getRegExp('(["])([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])', "g");
+var fixQuote = getRegExp('(["]+)(\s*)(.+?)(\s*)(["]+)', "g");
+var fixSingleQuote = getRegExp("([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])( )(')([A-Za-z])", "g");
 
-### for Users
+var hashANSCJKhash = getRegExp('([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])(#)([A-Za-z0-9\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]+)(#)([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])', "g");
+var cjkHash = getRegExp('([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])(#([^ ]))', "g");
+var hashCJK = getRegExp('(([^ ])#)([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])', "g");
 
-- [Google Chrome](https://chrome.google.com/webstore/detail/paphcfdffjnbcgkokihcdjliihicmbpd) (2016-12-28 updated)
-- [Mozilla Firefox](https://github.com/vinta/pangu.js/raw/master/browser_extensions/firefox/paranoid-auto-spacing.user.js) (2015-05-13 updated)
+var cjkOperatorANS = getRegExp('([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])([\+\-\*\/=&\\|<>])([A-Za-z0-9])', "g");
+var ansOperatorCJK = getRegExp('([A-Za-z0-9])([\+\-\*\/=&\\|<>])([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])', "g");
 
-### for Developers
+var cjkBracketCJK = getRegExp('([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])([\(\[\{<\u201c]+(.*?)[\)\]\}>\u201d]+)([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])', "g");
+var cjkBracket = getRegExp('([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])([\(\[\{<\u201c>])', "g");
+var bracketCJK = getRegExp('([\)\]\}>\u201d<])([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])', "g");
+var fixBracket = getRegExp('([\(\[\{<\u201c]+)(\s*)(.+?)(\s*)([\)\]\}>\u201d]+)/');
 
-- [pangu.go](https://github.com/vinta/pangu) (Go)
-- [pangu.java](https://github.com/vinta/pangu.java) (Java)
-- [pangu.js](https://github.com/vinta/pangu.js) (JavaScript)
-- [pangu.py](https://github.com/vinta/pangu.py) (Python)
-- [pangu.space](https://github.com/vinta/pangu.space) (Web API)
-- [pangu.clj](https://github.com/coldnew/pangu.clj) (Clojure)
-- [pangu.ex](https://github.com/cataska/pangu.ex) (Elixir)
-- [pangu.objective-c](https://github.com/Cee/pangu.objective-c) (Objective-C)
-- [pangu.php](https://github.com/Kunr/pangu.php) (PHP)
-- [pangu.rb](https://github.com/dlackty/pangu.rb) (Ruby)
-- [pangu.rs](https://github.com/airt/pangu.rs) (Rust)
-- [pangu.swift](https://github.com/X140Yu/pangu.Swift) (Swift)
+var fixSymbol = getRegExp('([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])([~!;:,\.\?\u2026])([A-Za-z0-9])', "g");
 
-## Usage
+var cjkANS = getRegExp('([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])([A-Za-z0-9`\$%\^&\*\-=\+\\\|/@\u00a1-\u00ff\u2022\u2027\u2150-\u218f])', "g");
+var ansCJK = getRegExp('([A-Za-z0-9`~\$%\^&\*\-=\+\\\|/!;:,\.\?\u00a1-\u00ff\u2022\u2026\u2027\u2150-\u218f])([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])', "g");
 
-```bash
-$ npm install pangu --save
+var spacing = function (text) {
+  // fork from https://github.com/vinta/pangu.js
+  var newText = text;
+
+  newText = newText.replace(cjkQuote, '$1 $2');
+  newText = newText.replace(quoteCJK, '$1 $2');
+  newText = newText.replace(fixQuote, '$1$3$5');
+  newText = newText.replace(fixSingleQuote, '$1$3$4');
+
+  newText = newText.replace(hashANSCJKhash, '$1 $2$3$4 $5');
+  newText = newText.replace(cjkHash, '$1 $2');
+  newText = newText.replace(hashCJK, '$1 $3');
+
+  newText = newText.replace(cjkOperatorANS, '$1 $2 $3');
+  newText = newText.replace(ansOperatorCJK, '$1 $2 $3');
+
+  var oldText = newText;
+  var tmpText = newText.replace(cjkBracketCJK, '$1 $2 $4');
+  newText = tmpText;
+  if (oldText === tmpText) {
+    newText = newText.replace(cjkBracket, '$1 $2');
+    newText = newText.replace(bracketCJK, '$1 $2');
+  }
+  newText = newText.replace(fixBracket, '$1$3$5');
+
+  newText = newText.replace(fixSymbol, '$1$2 $3');
+
+  newText = newText.replace(cjkANS, '$1 $2');
+  newText = newText.replace(ansCJK, '$1 $2');
+
+  return newText;
+}
+
+module.exports = {
+  spacing: spacing
+}
 ```
 
-### Browser
-
-```html
-<head>
-  // Files are located on /node_modules/pangu/dist/browser/
-  <script src="pangu.min.js"></script>
-</head>
-<script>
-  var newText = pangu.spacing("當你凝視著bug，bug也凝視著你");
-  // output: 當你凝視著 bug，bug 也凝視著你
-
-  pangu.spacingPage();
-  pangu.spacingElementById('main');
-  pangu.spacingElementByClassName('comment');
-  pangu.spacingElementByTagName('p');
-</script>
+在 wxml 中使用
 ```
-
-`pangu.js` is also available on [cdnjs](http://cdnjs.com/libraries/pangu):
-
-```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/3.3.0/pangu.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/3.3.0/pangu.min.js"></script>
+ <wxs src="./pangu.wxs" module="pangu" /> 
+ <text>{{pangu.spacing(text)}}</text>
 ```
-
-### Node.js
-
-Learn more on [npm](https://www.npmjs.com/package/pangu).
-
-```js
-var pangu = require('pangu'); // ES5
-import pangu from 'pangu'; // ES6
-
-pangu.spacing('與PM戰鬥的人，應當小心自己不要成為PM');
-// output: 與 PM 戰鬥的人，應當小心自己不要成為 PM
-
-pangu.spacingFile('/path/to/text.txt', function(err, data) {
-  // callback
-  console.log(data);
-});
-
-pangu.spacingFile('/path/to/text.txt').then(function(data) {
-  // promise
-  console.log(data);
-});
-
-const data = pangu.spacingFileSync('/path/to/text.txt');
-```
-
-## Testing
-
-You need to install [Node.js](https://vinta.ws/code/install-node-js-via-nvm.html).
-
-```bash
-$ git clone git@github.com:vinta/pangu.js.git && cd pangu.js
-$ npm install
-$ npm run test
-```
-
-## License
-
-Released under the [MIT License](http://opensource.org/licenses/MIT).
-
-## Author
-
-- GitHub: [@vinta](https://github.com/vinta)
-- Twitter: [@vinta](https://twitter.com/vinta)
-- Website: [vinta.ws](https://vinta.ws/code/)
-
-## Related Projects
-
-- Atom: [atom-pangu](https://github.com/7kfpun/atom-pangu)
-- Command-line interface: [pangu-cli](https://github.com/SDLyu/pangu)
-- Emacs: [pangu-spacing](http://coldnew.github.io/blog/2013/05/20_5cbb7.html)
-- Gulp: [gulp-pangu](https://github.com/7kfpun/gulp-pangu)
-- JavaScript: [为什么我就是能这样娴熟地加上空格呢？](https://github.com/Dustland/daft-auto-spacing)
-- Node.js: [pangu.node](https://github.com/huei90/pangu.node)
-- Ruby: [auto-correct](https://github.com/huacnlee/auto-correct)
-- Vim: [pangu.vim](https://github.com/hotoo/pangu.vim)
-- VS Code: [vscode-pangu](https://github.com/baurine/vscode-pangu)
-- WordPress: [Space Lover](https://wordpress.org/plugins/space-lover/)
